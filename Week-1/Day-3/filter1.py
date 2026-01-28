@@ -1,4 +1,5 @@
-num=[1,5,7,8,10,12,15,18,20,22,25,30]
+num1=[1,5,7,8,10,12,15,18,20,22,25,30]
+num=tuple(num1)
 def use_filter(num):
     even=list(filter(lambda x:x%2==0,num))
     odd=list(filter(lambda x:x%2!=0,num))
