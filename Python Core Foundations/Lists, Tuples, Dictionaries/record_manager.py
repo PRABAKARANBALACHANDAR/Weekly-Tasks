@@ -4,17 +4,13 @@ missing_id=[]
 def generate_id():
     if not id_list:
         return 1
-    else:
-        min_id=min(id_list)
-        max_id=max(id_list)
-        missing_id.clear()
-        for value in range(min_id, max_id+1):
-            if value not in id_list:
-                missing_id.append(value)
-        if missing_id:
-            return missing_id[0]   
-        else:
-            return max_id+1
+    min_id=min(id_list)
+    max_id=max(id_list)
+    missing_id.clear()
+    for value in range(min_id, max_id+1):
+        if value not in id_list:
+            missing_id.append(value)
+    return missing_id[0] if missing_id else max_id+1
 def create_record():
     id_num=generate_id()
     name=input("Enter student name: ").capitalize()
@@ -42,8 +38,8 @@ def create_record():
 
 def display_record():
     if not student_records:
-            print("No records available.")
-            return
+        print("No records available.")
+        return
     choice=input("Do you want to view all records or a specific student? (all/specific): ").lower()
     if choice=="all":
         print("\nAll Student Records:")
@@ -70,14 +66,13 @@ def update_record():
     elif choice=="course":
         student_records[id_num]["course"]=input("Enter new course: ").upper()
     details=student_records[id_num]
-    print(f"\nRecord Updated Successfully")
+    print("\nRecord Updated Successfully")
     print("ID   :", id_num)
     print("Name :", details['name'])
     print("Age  :", details['age'])
     print("Grade:", details['grade'])
     print("Course:", details['course'])
     
-
 
 def delete_record():
     id_num=int(input("Enter student ID to delete details: "))
