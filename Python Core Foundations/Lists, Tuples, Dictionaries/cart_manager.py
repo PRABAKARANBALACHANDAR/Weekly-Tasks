@@ -38,12 +38,25 @@ def view_products():
     else:
         print("Cart is empty.")
     return
+
+def add_discount():
+    product_name=input("Enter product name to add discount: ").capitalize()
+    if product_name in cart:
+        discount_percent=float(input("Enter discount percentage: "))
+        original_price=cart[product_name]['price']
+        discounted_price=original_price * (1 - discount_percent / 100)
+        cart[product_name]['price']=round(discounted_price, 2)
+        print(f"Discount of {discount_percent}% applied. New price of {product_name} is {cart[product_name]['price']}.")
+    else:
+        print(f"{product_name} not found in cart.")
+    return  
+    
 while True:
     user=input("Login (Buyer/Seller/Exit): ").capitalize()
     match user:
         case "Seller":
             while True:
-                action=int(input("What do you want to do?\n 1.Add a product\n 2.Update product details\n 3.Remove a product\n 4.View products\n 5.Exit\n Enter your action: "))
+                action=int(input("What do you want to do?\n 1.Add a product\n 2.Update product details\n 3.Remove a product\n 4.View products\n 5.Add Discounts\n 6.Exit\n Enter your action: "))
                 match action:
                     case 1:
                         add_product_seller()
@@ -54,6 +67,8 @@ while True:
                     case 4:
                         view_products()
                     case 5:
+                        add_discount()
+                    case 6:
                         print("Exiting Seller mode.")
                         break
                     case _:
