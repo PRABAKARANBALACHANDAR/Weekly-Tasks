@@ -18,7 +18,7 @@ def create_record():
         print("Record ID already exists.")
         return
     for student_id, details in student_records.items():
-        if details['name'] == name:
+        if details['name']==name:
             print(f"Record already exists for {name} with ID {student_id}.")
             opt=input("Do you want to update the existing record? (yes/no): ").lower()
             if opt=='yes':

@@ -9,7 +9,7 @@ class operations:
         return a * b
 
     def divide(self,a, b):
-            return "Error! Division by zero." if b == 0 else a / b
+            return "Error! Division by zero." if b==0 else a / b
 
 class advanced_operations(operations):
     def power(self,a, b):
@@ -36,20 +36,20 @@ class Calculator(advanced_operations):
             case _:
                 return "Invalid operation."
         
-if __name__ == "__main__":
-    calc = Calculator()
+if __name__=="__main__":
+    calc=Calculator()
     print("Functional Calculator")
     while True:
         choice=input("Do you want to perform a calculation? (yes/no): ").lower()
-        if choice == 'no':
+        if choice=='no':
             print("Exiting the calculator...")
             break
         print("Available operations: add(+), subtract(-), multiply(*), divide(/), power(^), modulus(%)")
-        operation = input("Enter operation: ")
+        operation=input("Enter operation: ")
         try:
-            a = float(input("Enter first number: "))
-            b = float(input("Enter second number: "))
-            result = calc.calculate(operation, a, b)
+            a=float(input("Enter first number: "))
+            b=float(input("Enter second number: "))
+            result=calc.calculate(operation, a, b)
             print(f"Result: {result}")
         except ValueError:
             print("Invalid input! Please enter numeric values for numbers.")
