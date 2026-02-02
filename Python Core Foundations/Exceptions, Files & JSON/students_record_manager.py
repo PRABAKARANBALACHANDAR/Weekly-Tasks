@@ -77,12 +77,12 @@ class RecordManager:
     def create_record_interactive(self):
         name=input("Enter student name: ").strip().capitalize()
         try:
-             age=int(input("Enter age: "))
-             grade=input("Enter grade: ").strip().upper()
-             course=input("Enter course enrolled: ").strip().upper()
-             return self.create_record(name, age, grade, course)
+            age=int(input("Enter age: "))
+            grade=input("Enter grade: ").strip().upper()
+            course=input("Enter course enrolled: ").strip().upper()
+            return self.create_record(name, age, grade, course)
         except ValueError:
-             raise InvalidInputError("Invalid numeric input for age.")
+            raise InvalidInputError("Invalid numeric input for age.")
 
     def list_records(self):
         return {int(k): StudentRecord.from_dict(v) for k, v in self._records.items()}

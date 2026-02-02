@@ -33,7 +33,7 @@ class AdminUI(Students_Attendance_tracker.Admin):
             if self.manager.add_student(name, dept):
                 print(f"Added {name} to Attendance System.")
             else:
-                 print(f"{name} already exists in Attendance System.")   
+                print(f"{name} already exists in Attendance System.")   
             return name
             
         except (students_record_manager.RecordExistsError, students_record_manager.InvalidInputError, ValueError) as e:
@@ -56,7 +56,7 @@ class AdminUI(Students_Attendance_tracker.Admin):
                 return     
         student=self.manager.get_student(name)
         if not student: 
-             return
+            return
         date=input("Enter date (YYYY-MM-DD): ")
         if date in student._attendance_records:
             print(f"Attendance for {name} on {date} already exists. Use update option to modify.")
