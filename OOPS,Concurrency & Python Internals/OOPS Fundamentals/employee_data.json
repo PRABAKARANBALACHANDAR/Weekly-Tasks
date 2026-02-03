@@ -1,0 +1,16 @@
+[
+    {
+        "Employee ID": 1,
+        "Name": "john",
+        "Designation": "Cashier",
+        "Salary": 0,
+        "Status": "Working"
+    },
+    {
+        "Employee ID": 2,
+        "Name": "bob",
+        "Designation": "Loan Officer",
+        "Salary": 0,
+        "Status": "Working"
+    }
+]

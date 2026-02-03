@@ -1,7 +1,8 @@
-import Students_Attendance_tracker
-import students_record_manager
-import announcements_manager
-import query_manager
+from Managers import Students_Attendance_tracker
+from Managers import students_record_manager
+from Managers import announcements_manager
+from Managers import query_manager
+from Exceptions import custom_exceptions
 
 class AdminUI(Students_Attendance_tracker.Admin):
     def __init__(self, attendance_manager, record_manager):
@@ -36,7 +37,7 @@ class AdminUI(Students_Attendance_tracker.Admin):
                 print(f"{name} already exists in Attendance System.")   
             return name
             
-        except (students_record_manager.RecordExistsError, students_record_manager.InvalidInputError, ValueError) as e:
+        except (custom_exceptions.RecordExistsError, custom_exceptions.InvalidInputError, ValueError) as e:
             print(f"Error registering student: {e}")
             return None
     
@@ -90,14 +91,14 @@ class StudentManagementSystem:
                             case '1' | 'add attendance':
                                 try:
                                     self._admin.add_record()
-                                except (students_record_manager.RecordExistsError, students_record_manager.InvalidInputError) as e:
+                                except (custom_exceptions.RecordExistsError, custom_exceptions.InvalidInputError) as e:
                                     print(f"Error: {e}")
                             case '2' | 'view attendance':
                                 self._admin.admin_view()
                             case '3' | 'records':
                                 try:
                                     self._admin.view_student_db()
-                                except (students_record_manager.RecordNotFoundError, students_record_manager.InvalidInputError) as e:
+                                except (custom_exceptions.RecordNotFoundError, custom_exceptions.InvalidInputError) as e:
                                     print(f"Error viewing student records: {e}")
                             case '4' | 'update':
                                 name=input("Enter student's name to update attendance: ")

@@ -5,19 +5,19 @@ from datetime import datetime
 
 class AnnouncementManager:
     def __init__(self, storage_file=None):
-        self._storage_file=storage_file or os.path.join(os.path.dirname(__file__), "announcements.json")
-        self._announcements=[]
+        self._storage_file = storage_file or os.path.join(os.path.dirname(__file__), "..", "Data", "announcements.json")
+        self._announcements = []
         self._load()
 
     def _load(self):
         if os.path.exists(self._storage_file):
             try:
                 with open(self._storage_file, "r") as f:
-                    self._announcements=json.load(f)
+                    self._announcements = json.load(f)
             except Exception:
-                self._announcements=[]
+                self._announcements = []
         else:
-            self._announcements=[]
+            self._announcements = []
 
     def _save(self):
         with open(self._storage_file, "w") as f:
@@ -27,7 +27,7 @@ class AnnouncementManager:
         if not title or not content:
             raise ValueError("Title and content cannot be empty.")
         
-        announcement={
+        announcement = {
             "id": len(self._announcements) + 1,
             "title": title,
             "content": content,
@@ -56,12 +56,12 @@ class AnnouncementManager:
 
     def delete_announcement(self, announcement_id):
         try:
-            announcement_id=int(announcement_id)
+            announcement_id = int(announcement_id)
         except ValueError:
             raise ValueError("Invalid ID format.")
         
         for i, announcement in enumerate(self._announcements):
-            if announcement["id"]==announcement_id:
+            if announcement["id"] == announcement_id:
                 self._announcements.pop(i)
                 self._save()
                 return True
@@ -70,17 +70,17 @@ class AnnouncementManager:
 
     def edit_announcement(self, announcement_id, title=None, content=None):
         try:
-            announcement_id=int(announcement_id)
+            announcement_id = int(announcement_id)
         except ValueError:
             raise ValueError("Invalid ID format.")
         
         for announcement in self._announcements:
-            if announcement["id"]==announcement_id:
+            if announcement["id"] == announcement_id:
                 if title:
-                    announcement["title"]=title
+                    announcement["title"] = title
                 if content:
-                    announcement["content"]=content
-                announcement["updated_at"]=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    announcement["content"] = content
+                announcement["updated_at"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 self._save()
                 return True
         
