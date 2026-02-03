@@ -12,7 +12,8 @@ PERMISSION_MAP={
     "withdraw_any":"withdraw_any",
     "check_eligibility":"check_eligibility",
     "apply_loan":"apply_loan",
-    "update_loan_status":"update_loan_status"
+    "update_loan_status":"update_loan_status",
+    "remove_customer":"remove_customer"
 }
 
 def load_json(filename, default):
@@ -71,6 +72,9 @@ class Data:
         customers=load_json(CUSTOMER_FILE,[])
         for c in customers:
             if c["Account Number"]==acc:
+                if c.get("Status") == "Removed":
+                    print("Account is removed/inactive.")
+                    return
                 c["Balance"]+=amt
                 save_json(CUSTOMER_FILE,customers)
                 print(f"Successfully deposited {amt}. New Balance: {c['Balance']}")
@@ -89,6 +93,9 @@ class Data:
         customers=load_json(CUSTOMER_FILE,[])
         for c in customers:
             if c["Account Number"]==acc:
+                if c.get("Status") == "Removed":
+                    print("Account is removed/inactive.")
+                    return
                 if c["Balance"]>=amt:
                     c["Balance"]-=amt
                     save_json(CUSTOMER_FILE,customers)
@@ -97,6 +104,24 @@ class Data:
                     print("Insufficient Balance")
                 return
         print("Account not found")
+    def remove_customer(self):
+        acc = input("Enter Account Number to remove: ")
+        customers = load_json(CUSTOMER_FILE, [])
+        found = False
+        for c in customers:
+            if c["Account Number"] == acc:
+                if c.get("Status") == "Removed":
+                    print("Customer is already removed.")
+                    return
+                c["Status"] = "Removed"
+                found = True
+                break
+        if found:
+            save_json(CUSTOMER_FILE, customers)
+            print(f"Customer with Account {acc} has been removed.")
+        else:
+            print("Account not found")
+
     def view_customers(self):
         customers=load_json(CUSTOMER_FILE,[])
         if not customers:
@@ -116,6 +141,9 @@ class Data:
         customers=load_json(CUSTOMER_FILE,[])
         for c in customers:
             if c["Account Number"]==acc:
+                if c.get("Status") == "Removed":
+                    print("Account is removed/inactive.")
+                    return
                 if c["CIBIL Score"]>=750 and amt<=c["Balance"]*10:
                     print("Eligible for loan.")
                 else:
@@ -142,6 +170,9 @@ class Data:
         if not cust:
             print("Account not found")
             return
+        if cust.get("Status") == "Removed":
+            print("Account is removed/inactive.")
+            return
         loans=load_json(LOAN_FILE,[])
         lid=max([l["Loan ID"] for l in loans],default=0)+1
         loans.append({"Loan ID":lid,"Customer ID":cust["Customer ID"],"Account Number":acc,"Amount":amt,"Type":ltype,"Duration":dur,"Status":"Pending"})
@@ -163,6 +194,9 @@ class Data:
                     customers=load_json(CUSTOMER_FILE,[])
                     for c in customers:
                         if c["Customer ID"]==l["Customer ID"]:
+                            if c.get("Status") == "Removed":
+                                print("Cannot approve loan for removed customer.")
+                                return
                             c["Balance"]+=l["Amount"]
                             save_json(CUSTOMER_FILE,customers)
                     print(f"Loan {lid} Approved.")
@@ -217,8 +251,8 @@ class Admin(Data):
         password=input("Password: ")
         designations=load_json(DESIGNATION_FILE,{})
         if not designations:
-             print("No designations defined.")
-             return
+            print("No designations defined.")
+            return
         des_list=list(designations.keys())
         for i,d in enumerate(des_list,1):
             print(f"{i}. {d}")
@@ -256,7 +290,7 @@ class Admin(Data):
         customers=load_json(CUSTOMER_FILE,[])
         cid=max([c["Customer ID"] for c in customers],default=0)+1
         acc=f"ACC{cid}"
-        customers.append({"Customer ID":cid,"Account Number":acc,"Customer Name":name,"Balance":0,"CIBIL Score":700})
+        customers.append({"Customer ID":cid,"Account Number":acc,"Customer Name":name,"Balance":0,"CIBIL Score":700,"Status":"Active"})
         save_json(CUSTOMER_FILE,customers)
         users[username]={"password":password,"role":"Customer","customer_id":cid,"account_number":acc}
         save_json(USERS_FILE,users)
@@ -282,16 +316,16 @@ class Employee(Data):
         employees=load_json(EMPLOYEE_FILE,[])
         emp=next((e for e in employees if e["Employee ID"]==self.emp_id), None)
         if not emp:
-             print("Employee record not found.")
-             return
+            print("Employee record not found.")
+            return
         if emp.get("Status")!="Working":
             print("Access Denied: You are not working.")
             return
         designations=load_json(DESIGNATION_FILE,{})
         des_data=designations.get(self.designation)
         if not des_data:
-             print(f"Designation {self.designation} not found.")
-             return
+            print(f"Designation {self.designation} not found.")
+            return
         perms=set(des_data.get("permissions", []))
         while True:
             print(f"\n--- Employee Menu ({self.designation}) ---")
