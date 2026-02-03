@@ -1,8 +1,7 @@
 # Day 5 Task
 
-## 1. Python Core Foundations (Student Management System)
 
-Exceptions, Files & JSON
+Exceptions, Files & JSON:
     1.Student_management_system.py
         * Student_data
             -name,id,age,grade
@@ -36,7 +35,7 @@ Exceptions, Files & JSON
     3.Exceptions/                        
         * __init__.py
         * custom_exceptions.py
-        
+     
 
 # Day 6 Task
 
