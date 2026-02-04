@@ -1,7 +1,7 @@
 import os
 import sys
 
-# Add current directory to path
+
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from core.admin import Admin
@@ -10,11 +10,11 @@ from core.employees import Employees
 from utils.json_handler import JSONHandler
 
 def initialize_system():
-    """Initializes the system with a default Admin if none exists."""
+    
     managers_data=JSONHandler.load('managers.json')
     admin_exists=False
     
-    # Check if any manager has CEO role
+
     if managers_data:
         for mgr in managers_data.values():
             if mgr.get('role')=='CEO':
@@ -23,7 +23,7 @@ def initialize_system():
     
     if not admin_exists:
         print("Initializing system with default Admin...")
-        # Default Admin Credentials
+
         admin=Admin('admin01', 'System Administrator', 'admin', 'admin123')
         try:
             admin.create()
@@ -33,19 +33,19 @@ def initialize_system():
             print(f"Error initializing system: {e}")
 
 def get_logged_in_user(username, password):
-    """authenticate user and return the object."""
-    # Check Managers
+    
+
     managers_data=JSONHandler.load('managers.json')
     if managers_data:
         for m_id, m in managers_data.items():
             if m['username']==username and m['password']==password:
-                # If CEO, return Admin object, else Managers object
+
                 if m['role']=='CEO':
                     return Admin(m['id'], m['name'], m['username'], m['password'], m['salary'])
                 else:
                     return Managers(m['id'], m['name'], m['username'], m['password'], m['role'], m['salary'])
 
-    # Check Employees
+
     employees_data=JSONHandler.load('employees.json')
     if employees_data:
         for e_id, e in employees_data.items():
@@ -79,9 +79,9 @@ def manage_managers_menu(admin_user):
                 
             elif choice=='2':
                 e_id=input("Enter ID to read: ")
-                # We need a dummy object to call read, or use static/class method if available.
-                # The existing design requires an object with ID to read.
-                dummy_mgr=Managers(e_id, '', '', '', 'HR') # Role doesn't matter for id lookup
+
+
+                dummy_mgr=Managers(e_id, '', '', '', 'HR') 
                 data=admin_user.crud_managers('read', manager_obj=dummy_mgr)
                 if data:
                     print(f"Manager Details: {data}")
@@ -151,7 +151,7 @@ def manage_employees_menu(manager_user):
 
             elif choice=='2':
                 e_id=input("Enter ID to read: ")
-                # Using a dummy employee for read
+
                 dummy_emp=Employees(e_id, '', '', '', '', 1)
                 data=dummy_emp.read()
                 if data:
@@ -160,14 +160,14 @@ def manage_employees_menu(manager_user):
                     print("Employee not found.")
 
             elif choice=='3':
-                # Update
+
                 e_id=input("Enter ID to update: ")
                 dummy_emp=Employees(e_id, '', '', '', '', 1)
                 
                 print("Leave fields blank to skip")
                 name=input("New Name: ")
                 level_str=input("New Level: ")
-                salary_str=input("New Salary: ") # Special permission usually but letting generic update for now
+                salary_str=input("New Salary: ") 
                 
                 updates={}
                 if name: updates['name']=name
@@ -266,7 +266,7 @@ def manage_teams_menu():
                 if t_id in teams:
                     t=Team.from_dict(teams[t_id])
                     t.add_member(emp_id)
-                    t.update() # Save changes
+                    t.update() 
                     print("Member added.")
                 else:
                     print("Team not found.")
@@ -321,7 +321,7 @@ def view_employees_menu():
         if choice=='1':
             for e in emps: print(e)
         elif choice=='2':
-            # Load teams 
+
             teams=JSONHandler.load('teams.json')
             for t_data in teams.values():
                 print(f"\nTeam {t_data['team_id']} (Leader: {t_data['team_leader_id']})")
@@ -344,10 +344,10 @@ def manager_portal(manager_user):
             print("2. Manage Managers (CEO)")
             
         if manager_user.can_manage_employees():
-             # Strictly HR only for managing employees (create/update/delete) as per user request "except HR" for Admin
+
             print("3. Manage Employees (HR)")
             
-        # Add more features as per existing methods in Managers class
+
         if manager_user.can_calculate_performance() or manager_user.role=='CEO':
              print("4. Calculate Employee Performance (COO)")
              print("5. Suggest Promotion (COO)")

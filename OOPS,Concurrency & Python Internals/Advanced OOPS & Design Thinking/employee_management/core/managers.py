@@ -84,7 +84,7 @@ class Managers(Data):
     def suggest_promotion(self, employee_obj):
         if not self.can_calculate_performance(): raise PermissionError("COO Access Only")
         score=self.calculate_employee_performance(employee_obj)
-        return score > 150 and employee_obj.level < 3  # Adjusted threshold since score now includes attendance
+        return score > 150 and employee_obj.level < 3  
 
     def manage_salary(self, employee_obj, increment):
         if not self.can_manage_finances(): raise PermissionError("CFO Access Only")
@@ -102,11 +102,11 @@ class Managers(Data):
         return total
 
     def manage_leave_requests(self, request_id, status):
-        # Allow view for all C-levels, but action only for HR
+
         if not (self.can_manage_attendance() or self.role in ['CEO', 'CTO', 'COO', 'CFO']):
              raise PermissionError("Access Denied")
         
-        # If trying to update status (Approve/Reject), strictly HR only
+
         if status and not self.can_manage_attendance():
             raise PermissionError("Only HR can Approve/Reject leave requests")
 
@@ -117,10 +117,10 @@ class Managers(Data):
         if not target_req:
             raise ValueError("Request not found")
         
-        # Approve or Reject
+
         target_req.update(status=status)
         
-        # If Approved, update employee leaves count or attendance?
+
         if status=='Approved':
             from core.employees import Employees
             emp_data=JSONHandler.load('employees.json').get(target_req.emp_id)

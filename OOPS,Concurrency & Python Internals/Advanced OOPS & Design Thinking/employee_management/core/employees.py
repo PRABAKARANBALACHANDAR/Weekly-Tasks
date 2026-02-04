@@ -57,7 +57,7 @@ class Employees(Managers):
         e[self._id]=self.to_dict()
         JSONHandler.save('employees.json', e)
         
-        # Automatic Attendance Record Creation
+
         from core.attendance import Attendance
         Attendance.mark_attendance_for_employee(self._id, status='Present')
 

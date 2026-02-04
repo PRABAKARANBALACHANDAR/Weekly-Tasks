@@ -42,12 +42,12 @@ class TaskAllocator:
         project_obj.assigned_team_id=best_team_id
         project_obj.status='in-progress'
         
-        # Move to tasks.json
+
         tasks_data=JSONHandler.load('tasks.json')
         tasks_data[project_obj.project_id]=project_obj.to_dict()
         JSONHandler.save('tasks.json', tasks_data)
         
-        # Remove from projects.json
+
         projects_data=JSONHandler.load('projects.json')
         if project_obj.project_id in projects_data:
             del projects_data[project_obj.project_id]
