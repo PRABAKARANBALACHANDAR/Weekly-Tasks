@@ -1,0 +1,11 @@
+{
+    "P1": {
+        "project_id": "P1",
+        "title": "AI Model",
+        "department": "IT",
+        "duration": 10,
+        "difficulty": 3,
+        "status": "in-progress",
+        "assigned_team_id": "T1"
+    }
+}

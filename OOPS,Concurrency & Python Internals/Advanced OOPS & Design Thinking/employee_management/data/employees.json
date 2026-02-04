@@ -1,0 +1,15 @@
+{
+    "emp1": {
+        "id": "emp1",
+        "name": "John Doe",
+        "username": "john",
+        "password": "pass",
+        "role": "EMPLOYEE",
+        "salary": 45000,
+        "dept": "IT",
+        "level": 1,
+        "leaves": 1,
+        "tasks": 0,
+        "diff_sum": 0
+    }
+}

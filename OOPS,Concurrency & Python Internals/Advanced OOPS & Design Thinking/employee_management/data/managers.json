@@ -1,0 +1,34 @@
+{
+    "ceo1": {
+        "id": "ceo1",
+        "name": "Steve",
+        "username": "ceo1",
+        "password": "pass",
+        "role": "CEO",
+        "salary": 150000
+    },
+    "hr1": {
+        "id": "hr1",
+        "name": "HR Manager",
+        "username": "hr1",
+        "password": "pass",
+        "role": "HR",
+        "salary": 80000
+    },
+    "coo1": {
+        "id": "coo1",
+        "name": "COO",
+        "username": "coo1",
+        "password": "pass",
+        "role": "COO",
+        "salary": 120000
+    },
+    "cto1": {
+        "id": "cto1",
+        "name": "CTO",
+        "username": "cto1",
+        "password": "pass",
+        "role": "CTO",
+        "salary": 120000
+    }
+}

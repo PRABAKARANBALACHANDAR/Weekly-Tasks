@@ -63,7 +63,7 @@ class Data:
         acc=input("Account Number: ")
         try:
             amt=float(input("Amount: "))
-            if amt <= 0:
+            if amt<=0:
                 print("Amount must be positive.")
                 return
         except ValueError:
@@ -72,7 +72,7 @@ class Data:
         customers=load_json(CUSTOMER_FILE,[])
         for c in customers:
             if c["Account Number"]==acc:
-                if c.get("Status") == "Removed":
+                if c.get("Status")=="Removed":
                     print("Account is removed/inactive.")
                     return
                 c["Balance"]+=amt
@@ -84,7 +84,7 @@ class Data:
         acc=input("Account Number: ")
         try:
             amt=float(input("Amount: "))
-            if amt <= 0:
+            if amt<=0:
                 print("Amount must be positive.")
                 return
         except ValueError:
@@ -93,7 +93,7 @@ class Data:
         customers=load_json(CUSTOMER_FILE,[])
         for c in customers:
             if c["Account Number"]==acc:
-                if c.get("Status") == "Removed":
+                if c.get("Status")=="Removed":
                     print("Account is removed/inactive.")
                     return
                 if c["Balance"]>=amt:
@@ -105,16 +105,16 @@ class Data:
                 return
         print("Account not found")
     def remove_customer(self):
-        acc = input("Enter Account Number to remove: ")
-        customers = load_json(CUSTOMER_FILE, [])
-        found = False
+        acc=input("Enter Account Number to remove: ")
+        customers=load_json(CUSTOMER_FILE, [])
+        found=False
         for c in customers:
-            if c["Account Number"] == acc:
-                if c.get("Status") == "Removed":
+            if c["Account Number"]==acc:
+                if c.get("Status")=="Removed":
                     print("Customer is already removed.")
                     return
-                c["Status"] = "Removed"
-                found = True
+                c["Status"]="Removed"
+                found=True
                 break
         if found:
             save_json(CUSTOMER_FILE, customers)
@@ -132,7 +132,7 @@ class Data:
         acc=input("Account Number: ")
         try:
             amt=float(input("Loan Amount: "))
-            if amt <= 0:
+            if amt<=0:
                 print("Loan amount must be positive.")
                 return
         except ValueError:
@@ -141,7 +141,7 @@ class Data:
         customers=load_json(CUSTOMER_FILE,[])
         for c in customers:
             if c["Account Number"]==acc:
-                if c.get("Status") == "Removed":
+                if c.get("Status")=="Removed":
                     print("Account is removed/inactive.")
                     return
                 if c["CIBIL Score"]>=750 and amt<=c["Balance"]*10:
@@ -154,11 +154,11 @@ class Data:
         acc=input("Account Number: ")
         try:
             amt=float(input("Loan Amount: "))
-            if amt <= 0:
+            if amt<=0:
                 print("Loan amount must be positive.")
                 return
             dur=int(input("Duration (months): "))
-            if dur <= 0:
+            if dur<=0:
                 print("Duration must be positive.")
                 return
         except ValueError:
@@ -170,7 +170,7 @@ class Data:
         if not cust:
             print("Account not found")
             return
-        if cust.get("Status") == "Removed":
+        if cust.get("Status")=="Removed":
             print("Account is removed/inactive.")
             return
         loans=load_json(LOAN_FILE,[])
@@ -194,7 +194,7 @@ class Data:
                     customers=load_json(CUSTOMER_FILE,[])
                     for c in customers:
                         if c["Customer ID"]==l["Customer ID"]:
-                            if c.get("Status") == "Removed":
+                            if c.get("Status")=="Removed":
                                 print("Cannot approve loan for removed customer.")
                                 return
                             c["Balance"]+=l["Amount"]
@@ -235,7 +235,7 @@ class Admin(Data):
                 ch=int(input("Choice: "))
                 if ch==len(ops_list) + 1:
                     break
-                if 1 <= ch <= len(ops_list):
+                if 1<=ch<=len(ops_list):
                     getattr(self, PERMISSION_MAP[ops_list[ch-1]])()
                 else:
                     print("Invalid choice.")
@@ -258,7 +258,7 @@ class Admin(Data):
             print(f"{i}. {d}")
         try:
             choice=int(input("Choice: "))
-            if 1 <= choice <= len(des_list):
+            if 1<=choice<=len(des_list):
                 designation=des_list[choice-1]
             else:
                 print("Invalid choice.")
@@ -269,7 +269,7 @@ class Admin(Data):
         employees=load_json(EMPLOYEE_FILE,[])
         if designation=="Assistant Manager":
             am_count=sum(1 for e in employees if e.get("Designation")=="Assistant Manager" and e.get("Status")=="Working")
-            if am_count >= 1:
+            if am_count>=1:
                 print("Error: Only one Assistant Manager is allowed.")
                 return
                 
@@ -340,7 +340,7 @@ class Employee(Data):
                 ch=int(input("Choice: "))
                 if ch==len(plist)+1:
                     break
-                if 1 <= ch <= len(plist):
+                if 1<=ch<=len(plist):
                     getattr(self,PERMISSION_MAP[plist[ch-1]])()
                 else:
                     print("Invalid choice.")
@@ -375,7 +375,7 @@ class Customer(Data):
     def withdraw(self):
         try:
             amt=float(input("Amount: "))
-            if amt <= 0:
+            if amt<=0:
                 print("Amount must be positive.")
                 return
         except ValueError:

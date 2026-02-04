@@ -4,19 +4,19 @@ from datetime import datetime
 
 class QueryManager:
     def __init__(self, storage_file=None):
-        self._storage_file = storage_file or os.path.join(os.path.dirname(__file__), "..", "Data", "student_queries.json")
-        self._queries = []
+        self._storage_file=storage_file or os.path.join(os.path.dirname(__file__), "..", "Data", "student_queries.json")
+        self._queries=[]
         self._load()
 
     def _load(self):
         if os.path.exists(self._storage_file):
             try:
                 with open(self._storage_file, "r") as f:
-                    self._queries = json.load(f)
+                    self._queries=json.load(f)
             except Exception:
-                self._queries = []
+                self._queries=[]
         else:
-            self._queries = []
+            self._queries=[]
 
     def _save(self):
         with open(self._storage_file, "w") as f:
@@ -26,8 +26,8 @@ class QueryManager:
         if not query_text:
             raise ValueError("Query text cannot be empty.")
         
-        query_id = len(self._queries) + 1
-        query = {
+        query_id=len(self._queries) + 1
+        query={
             "id": query_id,
             "student_name": student_name,
             "query": query_text,
@@ -40,7 +40,7 @@ class QueryManager:
         return query_id
 
     def view_pending_queries(self):
-        pending = [q for q in self._queries if q["status"] == "Pending"]
+        pending=[q for q in self._queries if q["status"]=="Pending"]
         if not pending:
             print("No pending queries.")
             return
@@ -53,22 +53,22 @@ class QueryManager:
 
     def reply_to_query(self, query_id, reply_text):
         try:
-            query_id = int(query_id)
+            query_id=int(query_id)
         except ValueError:
             raise ValueError("Invalid Query ID.")
 
         for query in self._queries:
-            if query["id"] == query_id:
-                query["reply"] = reply_text
-                query["status"] = "Resolved"
-                query["reply_date"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            if query["id"]==query_id:
+                query["reply"]=reply_text
+                query["status"]="Resolved"
+                query["reply_date"]=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 self._save()
                 return True
         
         raise ValueError(f"Query with ID {query_id} not found.")
 
     def view_student_queries(self, student_name):
-        student_queries = [q for q in self._queries if q["student_name"].lower() == student_name.lower()]
+        student_queries=[q for q in self._queries if q["student_name"].lower()==student_name.lower()]
         if not student_queries:
             print(f"No queries found for {student_name}.")
             return

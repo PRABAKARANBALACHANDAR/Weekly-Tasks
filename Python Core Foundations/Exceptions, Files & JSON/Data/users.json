@@ -1,0 +1,12 @@
+{
+    "principal": {
+        "password": "principal@123",
+        "role": "Principal",
+        "name": "Principal"
+    },
+    "john": {
+        "password": "1234",
+        "role": "Student",
+        "name": "John"
+    }
+}

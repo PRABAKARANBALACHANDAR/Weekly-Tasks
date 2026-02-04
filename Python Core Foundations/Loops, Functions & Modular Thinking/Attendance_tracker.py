@@ -171,7 +171,7 @@ class Admin:
         found=False
         for _, employee in sorted_employees:
             percentage=employee.calculate_annual_percentage(employee)
-            if percentage <= 75:
+            if percentage<=75:
                 found=True
                 self.print_employee_details(employee)
         
@@ -182,7 +182,7 @@ class Admin:
         print(f"\nAttendance records for {employee.name}:")
         
         for date in employee.get_all_dates():
-            if start_date and end_date and not (start_date <= date <= end_date):
+            if start_date and end_date and not (start_date<=date<=end_date):
                 continue
             
             status=employee.attendance_records[date]
@@ -193,7 +193,7 @@ class Admin:
         annual_percentage=employee.calculate_annual_percentage(employee)
         
         print(f"  Annual Attendance %: {annual_percentage:.2f}%")
-        if annual_percentage <= 75:
+        if annual_percentage<=75:
             print(f"  Warning: {employee.name}'s attendance is below 75%!")
     
     def get_status_input(self):

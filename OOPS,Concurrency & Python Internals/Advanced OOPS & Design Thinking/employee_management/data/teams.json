@@ -1,0 +1,9 @@
+{
+    "T1": {
+        "team_id": "T1",
+        "team_leader_id": "emp1",
+        "members": [],
+        "department": "IT",
+        "level": 3
+    }
+}

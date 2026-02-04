@@ -72,7 +72,7 @@ class Inventory_Manager:
         for name, p in self.products.items():
             if p.category=="Food":
                 delta=datetime.now() - p.date_added
-                if delta.days >= 3:
+                if delta.days>=3:
                     to_remove.append(name)
         
         for name in to_remove:
@@ -122,7 +122,7 @@ class Inventory_Manager:
         name=input("Enter Product Sold: ").capitalize()
         if name in self.products:
             qty=int(input("Quantity Sold: "))
-            if self.products[name].quantity >= qty:
+            if self.products[name].quantity>=qty:
                 self.products[name].quantity -= qty
                 self.products[name].sold_quantity += qty
                 print("Sale recorded.")
