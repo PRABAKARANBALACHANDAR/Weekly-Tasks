@@ -1,9 +1,9 @@
 {
-    "T1": {
-        "team_id": "T1",
-        "team_leader_id": "emp1",
+    "1": {
+        "team_id": "1",
+        "team_leader_id": "1",
         "members": [],
-        "department": "IT",
-        "level": 3
+        "department": "python",
+        "level": 2
     }
 }

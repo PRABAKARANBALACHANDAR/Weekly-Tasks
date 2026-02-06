@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "student_name": "Jake",
+    "target": "Principal",
+    "query": "Attendance lag",
+    "status": "Resolved",
+    "reply": "hi",
+    "date": "2026-02-06 10:50:01",
+    "reply_date": "2026-02-06 10:56:06"
+  }
+]

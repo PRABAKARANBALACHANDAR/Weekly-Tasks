@@ -1,0 +1,11 @@
+2026-02-06 10:40:44,014 - MainThread - INFO - Starting parallel execution for 2 files...
+2026-02-06 10:40:44,021 - ThreadPoolExecutor-0_0 - INFO - Starting download: https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png -> google.png
+2026-02-06 10:40:44,023 - ThreadPoolExecutor-0_1 - INFO - Starting download: https://www.python.org/static/img/python-logo.png -> python.png
+2026-02-06 10:40:44,495 - ThreadPoolExecutor-0_1 - INFO - Finished download: python.png in 0.47s
+2026-02-06 10:40:44,558 - ThreadPoolExecutor-0_0 - INFO - Finished download: google.png in 0.54s
+2026-02-06 10:40:44,565 - MainThread - INFO - Downloads completed. Starting processing...
+2026-02-06 10:40:44,565 - ThreadPoolExecutor-0_1 - INFO - Starting processing: google.png
+2026-02-06 10:40:44,566 - ThreadPoolExecutor-0_0 - INFO - Starting processing: python.png
+2026-02-06 10:40:45,567 - ThreadPoolExecutor-0_1 - INFO - Finished processing: google.png. Processed 5969 items in 1.00s
+2026-02-06 10:40:45,569 - ThreadPoolExecutor-0_0 - INFO - Finished processing: python.png. Processed 15770 items in 1.00s
+2026-02-06 10:40:45,569 - MainThread - INFO - All operations completed in 1.55s

@@ -144,7 +144,7 @@
    - Implementation of C-Level roles and shared manager logic.
    - Enforces Singleton constraint (Only 1 CEO, 1 CTO, etc.).
 * **vii. core/project.py**
-   - Project entity management (Title, Dept, Duration, Difficulty).
+   - Project entity management (Title, Dept, deadline, Difficulty).
    - Status tracking (Pending -> In-Progress -> Completed).
 * **viii. core/team.py**
    - Team structure management.
@@ -184,7 +184,7 @@
 ### Manager Workflows
 *   **CEO**: Creates other managers (CTO, HR, etc.). Views system status.
 *   **HR**: 
-    -   **Add Employee**: Enter details -> System creates Employee -> **Auto-creates Attendance**.
+    -   **Add Employee**: Enter details -> System creates Employee -> Auto-creates Attendance.
     -   **Attendance**: View records, calculate %.
     -   **Leaves**: View Pending requests -> Approve/Reject.
 *   **CTO**:

@@ -1,12 +1,32 @@
 {
-    "principal": {
+    "Principal": {
         "password": "principal@123",
         "role": "Principal",
         "name": "Principal"
     },
-    "john": {
-        "password": "1234",
+    "alice": {
+        "password": "123",
         "role": "Student",
+        "name": "Alice"
+    },
+    "mike": {
+        "password": "123",
+        "role": "Student",
+        "name": "Mike"
+    },
+    "jake": {
+        "password": "123",
+        "role": "Student",
+        "name": "Jake"
+    },
+    "john": {
+        "password": "123",
+        "role": "Teacher",
         "name": "John"
+    },
+    "bob": {
+        "password": "123",
+        "role": "Teacher",
+        "name": "Bob"
     }
 }
