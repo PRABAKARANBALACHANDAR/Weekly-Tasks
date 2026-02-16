@@ -28,7 +28,6 @@ class Config:
     KPI_PATH = OUTPUT_DIR / "kpis.json"
     VALIDATOR_SQL_PATH = Path("validator.sql")
 
-    # Database config
     DB_NAME = os.getenv("MYSQL_DATABASE", "student_db")
     DB_USER = os.getenv("MYSQL_USER", "root")
     DB_PASSWORD = os.getenv("MYSQL_PASSWORD")
@@ -50,7 +49,6 @@ class StudentDataPipeline:
         self.engine = None
         
     def load_data(self) -> pd.DataFrame:
-        """Loads data from the CSV file."""
         if not self.config.CSV_PATH.exists():
             logger.error(f"Input file not found: {self.config.CSV_PATH}")
             raise FileNotFoundError(f"Input file not found: {self.config.CSV_PATH}")
@@ -100,7 +98,6 @@ class StudentDataPipeline:
         return df
 
     def transform_data(self, df: pd.DataFrame) -> pd.DataFrame:
-        """Applies transformations: average score, pass flag, age groups."""
         logger.info("Transforming data...")
         df = df.copy()
         
@@ -120,7 +117,6 @@ class StudentDataPipeline:
         return df
 
     def calculate_kpis(self, df: pd.DataFrame) -> dict:
-        """Calculates KPIs and saves them."""
         logger.info("Calculating KPIs...")
         total = len(df)
         avg_score = float(df["score_avg"].mean()) if "score_avg" in df.columns else None
@@ -159,7 +155,6 @@ class StudentDataPipeline:
         logger.info(f"Data exported to {self.config.CLEANED_DATA_PATH}")
 
     def export_mysql(self, df: pd.DataFrame):
-        """Exports data to MySQL database."""
         logger.info("Exporting data to MySQL...")
         conn_str = self.config.get_db_connection_str()
         try:
