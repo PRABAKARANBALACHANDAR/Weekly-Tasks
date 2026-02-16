@@ -2,19 +2,19 @@
 
 ## GET
 
-![alt text](images/get_all.png)
+![alt text](get_all.png)
 
 ## GET BY ID
-![alt text](images/get_by_id.png)
+![alt text](get_by_id.png)
 
 ## POST
-![alt text](images/post.png)
+![alt text](post.png)
 
 ## PUT
-![alt text](images/put.png)
+![alt text](put.png)
 
 ## PATCH
-![alt text](images/patch.png)
+![alt text](patch.png)
 
 ## DELETE
-![alt text](images/delete.png)
+![alt text](delete.png)
