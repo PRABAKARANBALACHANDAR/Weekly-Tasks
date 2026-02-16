@@ -1,0 +1,17 @@
+# CRUD API
+
+## GET
+
+! [alt text](get_all.png)
+
+## GET BY ID
+! [alt text](get_by_id.png)
+
+## POST
+! [alt text](post.png)
+
+## PUT
+! [alt text](put.png)
+
+## DELETE
+! [alt text](delete.png)
