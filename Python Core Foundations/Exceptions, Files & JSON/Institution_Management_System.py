@@ -17,7 +17,7 @@ from Managers import notification_manager
 import os
 
 def clear_screen():
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system('cls' if os.name=='nt' else 'clear')
  
 
 class PrincipalUI (Students_Attendance_tracker .Principal ):
@@ -206,7 +206,7 @@ class PrincipalUI (Students_Attendance_tracker .Principal ):
 
         try :
 
-            records = self._record_manager._records
+            records=self._record_manager._records
             print("\nAvailable Students:")
             for sid, data in records.items(): print(f"ID: {sid} | Name: {data['name']}")
             id_num =str (int (input ("\nEnter student ID to update details: ")))
@@ -301,10 +301,10 @@ class PrincipalUI (Students_Attendance_tracker .Principal ):
             print ("No record manager attached.")
             return 
         try :
-            records = self._record_manager._records
+            records=self._record_manager._records
             print("\nAvailable Students:")
             for sid, data in records.items(): print(f"ID: {sid} | Name: {data['name']}")
-            id_num = str(int(input("\nEnter student ID to delete details: ")))
+            id_num=str(int(input("\nEnter student ID to delete details: ")))
             self._record_manager.delete_record(id_num)
             print ("Student record deleted.")
         except (custom_exceptions .RecordNotFoundError ,custom_exceptions .InvalidInputError )as e :
@@ -414,7 +414,7 @@ class TeacherUI (Students_Attendance_tracker .Teacher ):
 
     def add_record (self ):
         if not self .current_teacher_name :return 
-        t_obj = self.manager.get_teacher(self.current_teacher_name)
+        t_obj=self.manager.get_teacher(self.current_teacher_name)
         print(f"\n--- Add Attendance for {self.current_teacher_name}'s Students ---")
         if t_obj and t_obj._assigned_students_objects:
             for s in t_obj._assigned_students_objects: print(f"- {s.name}")
@@ -450,7 +450,7 @@ class TeacherUI (Students_Attendance_tracker .Teacher ):
 
     def add_marks (self ):
         if not self .current_teacher_name :return 
-        t_obj = self.manager.get_teacher(self.current_teacher_name)
+        t_obj=self.manager.get_teacher(self.current_teacher_name)
         print(f"\n--- Add Marks for {self.current_teacher_name}'s Students ---")
         if t_obj and t_obj._assigned_students_objects:
             for s in t_obj._assigned_students_objects: print(f"- {s.name}")
@@ -733,7 +733,7 @@ class StudentManagementSystem :
                             print (f"ID: {l ['id']} | {role_display }: {applicant } | Days: {l ['days']} | Reason: {l ['reason']}")
                 case '2':
                     print("\nPending Leave Applications:")
-                    leaves = self._leave_manager.get_pending_leaves()
+                    leaves=self._leave_manager.get_pending_leaves()
                     if not leaves: print("No pending leaves.")
                     else:
                         for l in leaves: print(f"ID: {l['id']} | {l.get('role', 'Student')}: {l.get('student_name') or l.get('applicant_name')}")
@@ -744,7 +744,7 @@ class StudentManagementSystem :
                         print ("Failed to approve leave (Invalid ID or not pending).")
                 case '3':
                     print("\nPending Leave Applications:")
-                    leaves = self._leave_manager.get_pending_leaves()
+                    leaves=self._leave_manager.get_pending_leaves()
                     if not leaves: print("No pending leaves.")
                     else:
                         for l in leaves: print(f"ID: {l['id']} | {l.get('role', 'Student')}: {l.get('student_name') or l.get('applicant_name')}")

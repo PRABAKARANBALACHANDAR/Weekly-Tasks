@@ -1,0 +1,16 @@
+2026-02-12 07:08:35,283 INFO file processor started (type 'exit' to stop)
+2026-02-12 07:08:56,458 INFO detected: 5.txt
+2026-02-12 07:08:57,460 INFO classified as: semi_structured
+2026-02-12 07:08:57,463 INFO done: 5.txt
+2026-02-12 07:10:41,506 INFO detected: All Appliances.csv
+2026-02-12 07:10:43,212 INFO classified as: unstructured/application
+2026-02-12 07:10:43,224 INFO done: All Appliances.csv
+2026-02-12 07:11:38,481 INFO detected: formatted_movie_lines.txt
+2026-02-12 07:11:43,897 INFO classified as: unstructured/text
+2026-02-12 07:11:43,900 INFO done: formatted_movie_lines.txt
+2026-02-12 07:12:02,060 INFO system stopped
+2026-02-12 07:17:04,208 INFO file processor started (type 'exit' to stop)
+2026-02-12 07:17:17,828 INFO detected: sys_log.png
+2026-02-12 07:17:18,859 INFO classified as: unstructured/bin
+2026-02-12 07:17:18,862 INFO done: sys_log.png
+2026-02-12 07:17:33,714 INFO system stopped
