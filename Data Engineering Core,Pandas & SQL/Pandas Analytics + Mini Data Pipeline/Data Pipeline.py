@@ -9,7 +9,6 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.exc import SQLAlchemyError
 from dotenv import load_dotenv
 
-# Setup logging
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
@@ -23,8 +22,6 @@ logger = logging.getLogger(__name__)
 load_dotenv()
 
 class Config:
-    """Configuration management for the pipeline."""
-    # Use raw string for Windows paths or forward slashes to avoid escape sequence issues
     CSV_PATH = Path(r"C:\Prabakaran Intern\Weekly-Tasks\Data Engineering Core,Pandas & SQL\Pandas Analytics + Mini Data Pipeline\student-dataset.csv")
     OUTPUT_DIR = Path("output")
     CLEANED_DATA_PATH = OUTPUT_DIR / "students_cleaned.json"
@@ -68,40 +65,31 @@ class StudentDataPipeline:
             raise
 
     def clean_data(self, df: pd.DataFrame) -> pd.DataFrame:
-        """Cleans columns and handles missing values."""
         logger.info("Cleaning data...")
         df = df.copy()
         
-        # Standardize column names
-        # Replace '.' with '_' before removing non-alphanumeric to handle "math.grade" -> "math_grade"
         df.columns = (df.columns.str.strip()
                                 .str.lower()
                                 .str.replace(" ", "_")
                                 .str.replace(".", "_")
                                 .str.replace(r"[^\w_]", "", regex=True))
         
-        # Rename 'id' to 'student_id' if present
         if "id" in df.columns:
             df = df.rename(columns={"id": "student_id"})
 
-        # Remove duplicates
         initial_count = len(df)
         df = df.drop_duplicates().reset_index(drop=True)
         if len(df) < initial_count:
             logger.info(f"Removed {initial_count - len(df)} duplicate rows.")
 
-        # Clean string columns
         str_cols = df.select_dtypes(include="object").columns
         for c in str_cols:
             df[c] = df[c].astype(str).str.strip().replace({"nan": pd.NA})
 
-        # Numeric conversion
-        # Identify grade/score columns dynamically
         numeric_cols = [c for c in df.columns if "grade" in c or "rating" in c or c in ["age"]]
         for col in numeric_cols:
             df[col] = pd.to_numeric(df[col], errors="coerce")
         
-        # Drop rows where all scores are missing
         score_cols = [c for c in df.columns if "grade" in c]
         if score_cols:
             before_drop = len(df)
@@ -116,12 +104,9 @@ class StudentDataPipeline:
         logger.info("Transforming data...")
         df = df.copy()
         
-        # Use grade columns for scoring
         score_cols = [c for c in df.columns if "grade" in c]
         if score_cols:
             df["score_avg"] = df[score_cols].mean(axis=1)
-            # Pass flag: Assuming 4.0 scale, pass >= 2.0 (approx 50%) or 2.5? 
-            # Original code was >= 50 on 100 scale. 50% = 2.0 on 4.0 scale.
             df["pass_flag"] = (df["score_avg"] >= 2.0).astype(int)
             df.loc[df["score_avg"].isna(), "pass_flag"] = 0
         else:
@@ -155,7 +140,6 @@ class StudentDataPipeline:
             "top_5_students": top5
         }
         
-        # Save KPIs
         try:
             with open(self.config.KPI_PATH, "w") as f:
                 json.dump(kpis, f, indent=2)
@@ -166,8 +150,6 @@ class StudentDataPipeline:
         return kpis
 
     def export_json(self, df: pd.DataFrame):
-        """Exports selected columns to JSON."""
-        # Export relevant columns dynamically
         base_cols = ["student_id", "name", "age", "gender", "score_avg", "pass_flag", "age_group"]
         grade_cols = [c for c in df.columns if "grade" in c]
         export_cols = [c for c in base_cols + grade_cols if c in df.columns]
@@ -182,29 +164,17 @@ class StudentDataPipeline:
         conn_str = self.config.get_db_connection_str()
         try:
             self.engine = create_engine(conn_str)
-            # Create DB if not exists (requires connection to default or just try connecting)
-            # Note: The connection string already includes the DB name. 
-            # If DB doesn't exist, this might fail unless we connect to a default DB first.
-            # However, keeping original logic's intent but making it robust.
-            
-            # Use a separate engine for DB creation if needed, or rely on existing DB.
-            # The original code tried to create the DB.
-            # Let's try to connect to the server without DB content to create it.
             base_conn_str = f"mysql+mysqlconnector://{self.config.DB_USER}:{quote_plus(self.config.DB_PASSWORD)}@{self.config.DB_HOST}:{self.config.DB_PORT}"
             temp_engine = create_engine(base_conn_str)
             with temp_engine.connect() as conn:
                 conn.execute(text(f"CREATE DATABASE IF NOT EXISTS {self.config.DB_NAME}"))
             
-            # Now output using the main engine
             df.to_sql("students", self.engine, if_exists="replace", index=False)
             logger.info("Data successfully exported to MySQL 'students' table.")
         except SQLAlchemyError as e:
             logger.error(f"Database error: {e}")
-            # Don't raise, just log as per original flexibility, but usually better to raise.
-            # We will continue to validation.
 
     def validate_data(self, df: pd.DataFrame):
-        """Performs validation checks."""
         logger.info("Validating final dataset...")
         logger.info(f"Stage count: {len(df)}")
         
@@ -216,7 +186,6 @@ class StudentDataPipeline:
                 logger.info("No duplicate student_ids found.")
 
     def run_sql_validation(self):
-        """Runs validation queries from the SQL file against the database."""
         if not self.config.VALIDATOR_SQL_PATH.exists():
             logger.warning(f"Validator SQL file not found at {self.config.VALIDATOR_SQL_PATH}. Skipping SQL validation.")
             return
