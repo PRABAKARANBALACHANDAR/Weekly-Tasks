@@ -1,0 +1,5 @@
+2026-02-18 07:45:35,139 - INFO - Patient added: ID=1, Name=Prabhu
+2026-02-18 07:46:07,391 - INFO - Health record created for Patient ID=1
+2026-02-18 07:47:45,187 - INFO - Record created: Type=Prescription, Patient ID=1, File=Prescription.log
+2026-02-18 11:06:26,230 - INFO - Retrieved records for Patient ID=1
+2026-02-18 11:08:19,063 - INFO - Retrieved records for Patient ID=1
