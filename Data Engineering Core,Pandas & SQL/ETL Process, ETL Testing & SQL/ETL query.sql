@@ -24,7 +24,7 @@ create table sales_data (
     total_sales decimal(12,2)
 );
 
-set global local_infile = 1;
+set global local_infile=1;
 
 load data local infile 'C:/Prabakaran Intern/Weekly-Tasks/Data Engineering Core,Pandas & SQL/ETL Process, ETL Testing & SQL/Adidas US Sales Datasets.csv'
 into table sales_stage
@@ -34,13 +34,13 @@ lines terminated by '\n'
 ignore 1 rows;
 
 update sales_stage
-set price_per_unit = replace(replace(price_per_unit,'$',''),',','');
+set price_per_unit=replace(replace(price_per_unit,'$',''),',','');
 
 update sales_stage
-set total_sales = replace(replace(total_sales,'$',''),',','');
+set total_sales=replace(replace(total_sales,'$',''),',','');
 
 update sales_stage
-set units_sold = replace(units_sold,',','');
+set units_sold=replace(units_sold,',','');
 
 delete from sales_stage
 where invoice_id is null or invoice_id='';
@@ -90,7 +90,7 @@ select s.invoice_id,
        t.units_sold as target_units
 from sales_stage s
 join sales_data t
-on s.invoice_id = t.invoice_id
+on s.invoice_id=t.invoice_id
 where cast(s.units_sold as unsigned) <> t.units_sold;
 
 select region,

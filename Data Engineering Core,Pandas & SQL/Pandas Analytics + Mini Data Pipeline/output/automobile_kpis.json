@@ -1,0 +1,323 @@
+{
+  "total_records": 201,
+  "price_stats": {
+    "min": 5118.0,
+    "max": 45400.0,
+    "mean": 13207.13,
+    "median": 10295.0,
+    "std": 7947.07
+  },
+  "top_5_most_expensive": [
+    {
+      "make": "mercedes-benz",
+      "engine_type": "ohcv",
+      "fuel_type": "gas",
+      "horsepower": 184.0,
+      "price": 45400.0
+    },
+    {
+      "make": "bmw",
+      "engine_type": "ohc",
+      "fuel_type": "gas",
+      "horsepower": 182.0,
+      "price": 41315.0
+    },
+    {
+      "make": "mercedes-benz",
+      "engine_type": "ohcv",
+      "fuel_type": "gas",
+      "horsepower": 184.0,
+      "price": 40960.0
+    },
+    {
+      "make": "porsche",
+      "engine_type": "ohcf",
+      "fuel_type": "gas",
+      "horsepower": 207.0,
+      "price": 37028.0
+    },
+    {
+      "make": "bmw",
+      "engine_type": "ohc",
+      "fuel_type": "gas",
+      "horsepower": 182.0,
+      "price": 36880.0
+    }
+  ],
+  "engine_type_distribution": {
+    "ohc": 145,
+    "ohcf": 15,
+    "ohcv": 13,
+    "dohc": 12,
+    "l": 12,
+    "rotor": 4
+  },
+  "avg_price_by_engine_type": [
+    {
+      "engine_type": "ohcv",
+      "avg_price": 25098.38,
+      "count": 13
+    },
+    {
+      "engine_type": "dohc",
+      "avg_price": 18116.42,
+      "count": 12
+    },
+    {
+      "engine_type": "l",
+      "avg_price": 14627.58,
+      "count": 12
+    },
+    {
+      "engine_type": "ohcf",
+      "avg_price": 13738.6,
+      "count": 15
+    },
+    {
+      "engine_type": "rotor",
+      "avg_price": 13020.0,
+      "count": 4
+    },
+    {
+      "engine_type": "ohc",
+      "avg_price": 11567.36,
+      "count": 145
+    }
+  ],
+  "avg_hp_by_engine_type": {
+    "ohcv": 169.54,
+    "dohc": 146.0,
+    "ohcf": 110.4,
+    "rotor": 109.5,
+    "l": 95.5,
+    "ohc": 93.57
+  },
+  "fuel_system_distribution": {
+    "mpfi": 92,
+    "2bbl": 64,
+    "idi": 20,
+    "1bbl": 11,
+    "spdi": 9,
+    "4bbl": 3,
+    "mfi": 1,
+    "spfi": 1
+  },
+  "avg_hp_by_fuel_system": [
+    {
+      "fuel_system": "mfi",
+      "avg_hp": 145.0,
+      "count": 1
+    },
+    {
+      "fuel_system": "mpfi",
+      "avg_hp": 129.9,
+      "count": 90
+    },
+    {
+      "fuel_system": "spdi",
+      "avg_hp": 125.78,
+      "count": 9
+    },
+    {
+      "fuel_system": "4bbl",
+      "avg_hp": 101.0,
+      "count": 3
+    },
+    {
+      "fuel_system": "spfi",
+      "avg_hp": 90.0,
+      "count": 1
+    },
+    {
+      "fuel_system": "idi",
+      "avg_hp": 84.45,
+      "count": 20
+    },
+    {
+      "fuel_system": "1bbl",
+      "avg_hp": 76.55,
+      "count": 11
+    },
+    {
+      "fuel_system": "2bbl",
+      "avg_hp": 73.19,
+      "count": 64
+    }
+  ],
+  "avg_price_by_fuel_system": {
+    "mpfi": 17605.14,
+    "idi": 15838.15,
+    "mfi": 12964.0,
+    "4bbl": 12145.0,
+    "spfi": 11048.0,
+    "spdi": 10990.44,
+    "1bbl": 7555.55,
+    "2bbl": 7433.2
+  },
+  "horsepower_stats": {
+    "min": 48.0,
+    "max": 262.0,
+    "mean": 103.4,
+    "median": 95.0
+  },
+  "fuel_type_breakdown": {
+    "gas": 181,
+    "diesel": 20
+  },
+  "avg_price_by_fuel_type": {
+    "diesel": 15838.15,
+    "gas": 12916.41
+  },
+  "aspiration_breakdown": {
+    "std": 165,
+    "turbo": 36
+  },
+  "avg_price_by_aspiration": {
+    "std": 12542.18,
+    "turbo": 16254.81
+  },
+  "avg_hp_by_aspiration": {
+    "std": 98.97,
+    "turbo": 123.44
+  },
+  "make_avg_price_ranking": [
+    {
+      "make": "jaguar",
+      "avg_price": 34600.0,
+      "num_models": 3
+    },
+    {
+      "make": "mercedes-benz",
+      "avg_price": 33647.0,
+      "num_models": 8
+    },
+    {
+      "make": "porsche",
+      "avg_price": 31400.5,
+      "num_models": 4
+    },
+    {
+      "make": "bmw",
+      "avg_price": 26118.75,
+      "num_models": 8
+    },
+    {
+      "make": "volvo",
+      "avg_price": 18063.18,
+      "num_models": 11
+    },
+    {
+      "make": "audi",
+      "avg_price": 17859.17,
+      "num_models": 6
+    },
+    {
+      "make": "mercury",
+      "avg_price": 16503.0,
+      "num_models": 1
+    },
+    {
+      "make": "alfa-romero",
+      "avg_price": 15498.33,
+      "num_models": 3
+    },
+    {
+      "make": "peugot",
+      "avg_price": 15489.09,
+      "num_models": 11
+    },
+    {
+      "make": "saab",
+      "avg_price": 15223.33,
+      "num_models": 6
+    },
+    {
+      "make": "mazda",
+      "avg_price": 10652.88,
+      "num_models": 17
+    },
+    {
+      "make": "nissan",
+      "avg_price": 10415.67,
+      "num_models": 18
+    },
+    {
+      "make": "volkswagen",
+      "avg_price": 10077.5,
+      "num_models": 12
+    },
+    {
+      "make": "toyota",
+      "avg_price": 9885.81,
+      "num_models": 32
+    },
+    {
+      "make": "renault",
+      "avg_price": 9595.0,
+      "num_models": 2
+    },
+    {
+      "make": "mitsubishi",
+      "avg_price": 9239.77,
+      "num_models": 13
+    },
+    {
+      "make": "isuzu",
+      "avg_price": 8916.5,
+      "num_models": 2
+    },
+    {
+      "make": "subaru",
+      "avg_price": 8541.25,
+      "num_models": 12
+    },
+    {
+      "make": "honda",
+      "avg_price": 8184.69,
+      "num_models": 13
+    },
+    {
+      "make": "plymouth",
+      "avg_price": 7963.43,
+      "num_models": 7
+    },
+    {
+      "make": "dodge",
+      "avg_price": 7875.44,
+      "num_models": 9
+    },
+    {
+      "make": "chevrolet",
+      "avg_price": 6007.0,
+      "num_models": 3
+    }
+  ],
+  "avg_price_by_body_style": {
+    "hardtop": 22208.5,
+    "convertible": 21890.5,
+    "sedan": 14459.76,
+    "wagon": 12371.96,
+    "hatchback": 9957.44
+  },
+  "avg_price_by_drive_wheels": {
+    "rwd": 19757.61,
+    "4wd": 10241.0,
+    "fwd": 9244.78
+  },
+  "price_segment_distribution": {
+    "mid_range": 78,
+    "budget": 61,
+    "premium": 45,
+    "luxury": 17
+  },
+  "turbo_vs_non_turbo": {
+    "turbo_count": 36,
+    "non_turbo_count": 165,
+    "avg_price_turbo": 16254.81,
+    "avg_price_non_turbo": 12542.18
+  },
+  "avg_mpg_by_fuel_type": {
+    "diesel": 32.52,
+    "gas": 27.43
+  }
+}

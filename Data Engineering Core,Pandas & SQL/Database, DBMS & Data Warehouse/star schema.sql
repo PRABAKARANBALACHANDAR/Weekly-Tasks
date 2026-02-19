@@ -90,26 +90,26 @@ select p.product_name,
        sum(f.quantity) as total_quantity_sold
 from fact_sales f
 join dim_product p
-on f.product_key = p.product_key
+on f.product_key=p.product_key
 group by p.product_name;
 
 select c.customer_name,
        sum(f.total_amount) as total_spent
 from fact_sales f
 join dim_customer c
-on f.customer_key = c.customer_key
+on f.customer_key=c.customer_key
 group by c.customer_name;
 
 select d.year,
        sum(f.total_amount) as yearly_revenue
 from fact_sales f
 join dim_date d
-on f.date_key = d.date_key
+on f.date_key=d.date_key
 group by d.year;
 
 select s.store_name,
        sum(f.total_amount) as store_revenue
 from fact_sales f
 join dim_store s
-on f.store_key = s.store_key
+on f.store_key=s.store_key
 group by s.store_name;

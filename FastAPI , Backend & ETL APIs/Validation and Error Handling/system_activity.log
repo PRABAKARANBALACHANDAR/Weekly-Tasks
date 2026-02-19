@@ -3,3 +3,10 @@
 2026-02-18 07:47:45,187 - INFO - Record created: Type=Prescription, Patient ID=1, File=Prescription.log
 2026-02-18 11:06:26,230 - INFO - Retrieved records for Patient ID=1
 2026-02-18 11:08:19,063 - INFO - Retrieved records for Patient ID=1
+2026-02-18 11:45:45,020 - INFO - Retrieved records for Patient ID=1
+2026-02-18 14:51:43,704 - INFO - Patient added: ID=1, Name=Prabhu
+2026-02-18 15:47:17,262 - INFO - Record created: Type=1.txt, Patient ID=1, File=1.txt
+2026-02-19 10:09:23,297 - ERROR - Error creating patient record: (pymysql.err.IntegrityError) (1048, "Column 'record_data' cannot be null")
+[SQL: INSERT INTO `PatientRecords` (patient_id, record_type, record_data, file_name, file_path, created_at, updated_at) VALUES (%(patient_id)s, %(record_type)s, %(record_data)s, %(file_name)s, %(file_path)s, %(created_at)s, %(updated_at)s)]
+[parameters: {'patient_id': 1, 'record_type': 'CustomErrors.py', 'record_data': None, 'file_name': 'CustomErrors.py', 'file_path': 'C:\\Prabakaran Intern\\Weekly-Tasks\\FastAPI , Backend & ETL APIs\\Validation and Error Handling\\UploadedFiles\\CustomErrors.py', 'created_at': datetime.datetime(2026, 2, 19, 10, 9, 23, 291647), 'updated_at': datetime.datetime(2026, 2, 19, 10, 9, 23, 291647)}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
