@@ -33,8 +33,8 @@ def clean_data(df:pd.DataFrame)->pd.DataFrame:
     for col in ['birth_date','death_date','start_date','end_date']:
         if col in df.columns:
             df[col]=pd.to_datetime(df[col],errors='coerce')
-    df = df.astype(object)
-    df = df.where(pd.notnull(df), None)
+    df=df.astype(object)
+    df=df.where(pd.notnull(df), None)
     return df
 
 def process_patients(df:pd.DataFrame)->pd.DataFrame:

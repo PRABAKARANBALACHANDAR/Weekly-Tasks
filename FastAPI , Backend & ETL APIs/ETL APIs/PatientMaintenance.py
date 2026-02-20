@@ -1,4 +1,4 @@
-from fastapi import FastAPI,Depends,status,HTTPException,File,UploadFile
+from fastapi import FastAPI,Depends,status,HTTPException,File,UploadFile,APIRouter,Request
 from pymysql import cursors
 from pymysql.err import MySQLError
 from typing import List,Optional,Annotated
@@ -14,10 +14,21 @@ import logging
 from dotenv import load_dotenv
 from urllib.parse import quote_plus
 import pandas as pd
+import auth
+import limit_log
+from CustomErrors import PatientManagementError,DatabaseOperationError,ValidationError as PatientValidationError
 
 load_dotenv()
+app=FastAPI(title="Patient Maintenance API",version="1.0.0")
+app.add_middleware(limit_log.RequestLoggingMiddleware)
+app.add_middleware(limit_log.RateLimitMiddleware)
+router=APIRouter(prefix="/api/v1")
 
-app=FastAPI()
+@app.exception_handler(PatientManagementError)
+async def patient_management_error_handler(request:Request,exc:PatientManagementError):
+    from fastapi.responses import JSONResponse
+    logger.error(f"PatientManagementError [{exc.error_code}]: {exc.message}")
+    return JSONResponse(status_code=400,content={"error_code":exc.error_code,"detail":exc.message})
 
 logging.basicConfig(level=logging.INFO,format="%(asctime)s - %(levelname)s - %(message)s",handlers=[logging.FileHandler("system_activity.log"),logging.StreamHandler()])
 logger=logging.getLogger(__name__)
@@ -28,13 +39,7 @@ MYSQL_HOST=os.getenv("MYSQL_HOST", "localhost")
 MYSQL_PORT=os.getenv("MYSQL_PORT", "3306")
 MYSQL_DATABASE=os.getenv("MYSQL_DATABASE", "gh_db")
 
-DATABASE_CONFIG={
-    "host": MYSQL_HOST,
-    "user": MYSQL_USER,
-    "password": MYSQL_PASSWORD,
-    "db": MYSQL_DATABASE,
-    "cursorclass": cursors.DictCursor
-}
+DATABASE_CONFIG={"host": MYSQL_HOST,"user": MYSQL_USER,"password": MYSQL_PASSWORD,"db": MYSQL_DATABASE,"cursorclass": cursors.DictCursor}
 
 DATABASE_URL=f"mysql+pymysql://{MYSQL_USER}:{quote_plus(MYSQL_PASSWORD)}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}"
 engine=create_engine(DATABASE_URL)
@@ -175,7 +180,7 @@ def get_db():
     finally:
         db.close()
 
-@app.post("/upload",status_code=status.HTTP_201_CREATED)
+@router.post("/upload",status_code=status.HTTP_201_CREATED)
 async def file_upload(files:Annotated[List[UploadFile],File(...)],db:Session=Depends(get_db)):
     try:
         import data_processor
@@ -194,7 +199,7 @@ async def file_upload(files:Annotated[List[UploadFile],File(...)],db:Session=Dep
         files.sort(key=get_priority)
         for file in files:
             name=file.filename.lower()
-            file_bytes = await file.read()
+            file_bytes=await file.read()
             if name.endswith('.xlsx') or name.endswith('.xls'):
                 content=pd.read_excel(io.BytesIO(file_bytes))
             else:
@@ -279,18 +284,33 @@ async def file_upload(files:Annotated[List[UploadFile],File(...)],db:Session=Dep
                         else:
                             db.merge(payer)
                 db.commit()
+        logger.info("File upload completed successfully")
         return {"message":"File processed successfully"}
-    except Exception as e:
+    except SQLAlchemyError as e:
+        logger.error(f"File upload DB error: {e}")
         db.rollback()
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=str(e))
+        raise DatabaseOperationError("insert",str(e))
+    except Exception as e:
+        logger.error(f"File upload failed: {e}")
+        db.rollback()
+        raise PatientValidationError("file",str(e))
 
-@app.get("/analysis/encounters",response_model=List[PatientEncountersAnalysisResponse])
-def encounter_analysis(db:Session=Depends(get_db)):
+@router.get("/analysis/encounters",response_model=List[PatientEncountersAnalysisResponse])
+def encounter_analysis(db:Session=Depends(get_db),current_user:dict=Depends(auth.get_current_user)):
     try:
         import data_processor
         encounter_data=db.query(Encounters.encounter_type,
                                 func.count(Encounters.encounter_type).label('count'),
                                 func.sum(Encounters.total_claim_amount).label('total_claim_amount')).group_by(Encounters.encounter_type).all()
-        return [PatientEncountersAnalysisResponse(encounter_type=row.encounter_type,count=row.count,total_claim_amount=row.total_claim_amount) for row in encounter_data]
+        result=[PatientEncountersAnalysisResponse(encounter_type=row.encounter_type,count=row.count,total_claim_amount=row.total_claim_amount) for row in encounter_data]
+        logger.info(f"Encounter analysis fetched by user={current_user.get('sub')} records={len(result)}")
+        return result
+    except SQLAlchemyError as e:
+        logger.error(f"Encounter analysis DB error: {e}")
+        raise DatabaseOperationError("query",str(e))
     except Exception as e:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail=str(e))
+        logger.error(f"Encounter analysis failed: {e}")
+        raise PatientValidationError("encounter_query",str(e))
+
+app.include_router(router)
+app.include_router(auth.router,prefix="/api/v1")
