@@ -3,8 +3,6 @@ import logging
 from typing import List, Optional,Dict,Tuple
 from datetime import datetime,date
 import pandas as pd
-from sqlalchemy.orm import Session
-from PatientMaintenance import Patient,Procedures,Encounters,Payers
 
 logger=logging.getLogger(__name__)
 
@@ -37,10 +35,20 @@ def clean_data(df:pd.DataFrame)->pd.DataFrame:
     df=df.where(pd.notnull(df), None)
     return df
 
+def transform_gender(df:pd.DataFrame)->pd.DataFrame:
+    df['gender']=df['gender'].replace({'M':'Male','F':'Female'})
+    return df
+
+def transform_marital(df:pd.DataFrame)->pd.DataFrame:
+    df['Marital']=df['Marital'].replace({'M':'Married','S':'Single'})
+    return df
+
 def process_patients(df:pd.DataFrame)->pd.DataFrame:
     df.columns=[clean_column_name(col) for col in df.columns]
     df=filter_columns(df,PATIENT_COLUMNS)
     df=rename_columns(df,PATIENT_COL_MAP)
+    df=transform_gender(df)
+    df=transform_marital(df)
     df=clean_data(df)
     return df
 
