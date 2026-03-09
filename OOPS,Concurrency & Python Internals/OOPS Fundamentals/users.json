@@ -1,0 +1,18 @@
+{
+    "manager": {
+        "password": "manager@123",
+        "role": "Admin"
+    },
+    "john": {
+        "password": "1234",
+        "role": "Employee",
+        "designation": "Cashier",
+        "employee_id": 1
+    },
+    "bob": {
+        "password": "4567",
+        "role": "Employee",
+        "designation": "Loan Officer",
+        "employee_id": 2
+    }
+}

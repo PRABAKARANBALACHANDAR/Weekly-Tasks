@@ -1,0 +1,5 @@
+2026-02-06 21:13:37,197 [INFO] METADATA: {"event": "processed", "original_path": "Incoming\\Amazon-Products.csv", 
+"moved_to": "processed_data\\csv\\Amazon-Products.csv", "size": 188603963, "processing_time": 9.1186, "summary": {"stats": {}, "column_count": 10}}
+2026-02-06 21:15:02,454 [INFO] METADATA: {"event": "processed", "original_path": "Incoming\\Superstore.xlsx", "moved_to": "processed_data\\xlsx\\Superstore.xlsx", "size": 1325674, "processing_time": 1.0181, "summary": {}}
+2026-02-06 21:25:05,071 [INFO] METADATA: {"event": "processed", "original_path": "Incoming\\1.txt", "moved_to": "processed_data\\text\\1.txt", "mime_type": "text/plain", "size": 29086, "processing_time": 1.233, "summary": {"numbers": {"count": 1144, "sum": 1139925823.6, "mean": 996438.6569930069, "median": 4.7}}}
+2026-02-06 21:36:08,737 METADATA: {"event": "processed", "original_path": "Incoming\\2.txt", "moved_to": "processed_data\\text\\2.txt", "mime_type": "text/plain", "size": 30908, "processing_time": 1.1743, "summary": {"numbers": {"count": 1177, "sum": 1197536122.6, "mean": 1017447.8526762956, "median": 4.0}}}

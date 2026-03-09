@@ -1,0 +1,4 @@
+2026-02-12 07:08:57,463 {"event": "processed", "original_path": "incoming\\5.txt", "moved_to": "processed_data\\semi_structured\\5.txt", "category": "semi_structured", "size": 31785, "processing_time": 0.0031}
+2026-02-12 07:10:43,223 {"event": "processed", "original_path": "incoming\\All Appliances.csv", "moved_to": "processed_data\\unstructured\\application\\All Appliances.csv", "category": "unstructured/application", "size": 3490779, "processing_time": 0.7152}
+2026-02-12 07:11:43,900 {"event": "processed", "original_path": "incoming\\formatted_movie_lines.txt", "moved_to": "processed_data\\unstructured\\text\\formatted_movie_lines.txt", "category": "unstructured/text", "size": 24659640, "processing_time": 4.4175}
+2026-02-12 07:17:18,862 {"event": "processed", "original_path": "incoming\\sys_log.png", "moved_to": "processed_data\\unstructured\\bin\\sys_log.png", "category": "unstructured/bin", "size": 30596, "processing_time": 0.0233}

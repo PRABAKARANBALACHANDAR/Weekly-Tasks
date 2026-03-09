@@ -1,0 +1,36 @@
+{
+  "1": {
+    "name": "Alice",
+    "course": "AI",
+    "age": 21,
+    "grade": "A",
+    "marks": {
+      "ai": 90.0
+    },
+    "assigned_teacher": "John",
+    "student_type": "GradeStudent"
+  },
+  "2": {
+    "name": "Mike",
+    "course": "CS",
+    "age": 21,
+    "grade": "A",
+    "marks": {
+      "cs": 80.0
+    },
+    "assigned_teacher": "Bob",
+    "student_type": "GradeStudent"
+  },
+  "3": {
+    "name": "Jake",
+    "course": "CS",
+    "age": 21,
+    "grade": "A",
+    "marks": {
+      "90": 90.0,
+      "ai": 20.0
+    },
+    "assigned_teacher": "Bob",
+    "student_type": "GradeStudent"
+  }
+}

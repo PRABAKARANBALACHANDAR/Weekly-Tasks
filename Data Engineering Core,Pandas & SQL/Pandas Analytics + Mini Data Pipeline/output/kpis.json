@@ -1,0 +1,27 @@
+{
+  "total_students": 307,
+  "average_score": 3.656758957654723,
+  "pass_rate_pct": 100.0,
+  "top_5_students": [
+    {
+      "student_id": 286,
+      "score_avg": 4.25
+    },
+    {
+      "student_id": 98,
+      "score_avg": 4.2
+    },
+    {
+      "student_id": 294,
+      "score_avg": 4.2
+    },
+    {
+      "student_id": 146,
+      "score_avg": 4.175
+    },
+    {
+      "student_id": 240,
+      "score_avg": 4.15
+    }
+  ]
+}

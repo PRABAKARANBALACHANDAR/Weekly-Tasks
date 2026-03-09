@@ -1,0 +1,15 @@
+{
+    "REMINDER_PROJ_REMIND_01_20260206_102034": {
+        "notification_id": "REMINDER_PROJ_REMIND_01_20260206_102034",
+        "project_id": "PROJ_REMIND_01",
+        "team_id": "1",
+        "hours_remaining": 0.9903611999999999,
+        "time_remaining_str": "59 minute(s)",
+        "created_at": "2026-02-06 10:20:34",
+        "acknowledged": true,
+        "acknowledged_at": "2026-02-06 10:20:34",
+        "acknowledged_by": "1",
+        "notification_count": 2,
+        "last_notified_at": "2026-02-06 10:20:34"
+    }
+}

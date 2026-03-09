@@ -1,0 +1,23 @@
+{
+    "Cashier": {
+        "permissions": [
+            "view_customers",
+            "deposit_money",
+            "withdraw_any"
+        ]
+    },
+    "Loan Officer": {
+        "permissions": [
+            "check_eligibility",
+            "apply_loan"
+        ]
+    },
+    "Assistant Manager": {
+        "permissions": [
+            "view_customers",
+            "check_eligibility",
+            "apply_loan",
+            "update_loan_status"
+        ]
+    }
+}

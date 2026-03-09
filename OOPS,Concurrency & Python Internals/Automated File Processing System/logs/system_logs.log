@@ -1,0 +1,5 @@
+2026-02-06 21:35:54,965 [INFO] File processor started. Type 'exit' to stop.
+2026-02-06 21:36:07,561 [INFO] Detected file: 2.txt
+2026-02-06 21:36:08,613 [INFO] Categorized: 2.txt -> text
+2026-02-06 21:36:08,737 [INFO] Log added: metadata for 2.txt saved to log file.
+2026-02-06 21:36:16,138 [INFO] System execution stopped.

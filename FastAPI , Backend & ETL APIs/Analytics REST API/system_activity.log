@@ -1,0 +1,65 @@
+2026-02-20 15:39:11,145 - INFO - GET /docs 200 3.0ms client=127.0.0.1
+2026-02-20 15:39:11,685 - INFO - GET /openapi.json 200 30.6ms client=127.0.0.1
+2026-02-20 15:39:23,666 - INFO - GET /api/v1/analysis/encounters 401 8.0ms client=127.0.0.1
+2026-02-20 15:39:57,992 - INFO - POST /api/v1/auth/token 200 8.82ms client=127.0.0.1
+2026-02-20 15:40:05,935 - INFO - GET /api/v1/analysis/encounters 401 2.0ms client=127.0.0.1
+2026-02-20 15:40:11,705 - INFO - GET /api/v1/analysis/encounters 401 3.32ms client=127.0.0.1
+2026-02-20 15:40:18,785 - INFO - GET /api/v1/analysis/encounters 401 0.99ms client=127.0.0.1
+2026-02-20 15:42:28,110 - INFO - GET /docs 200 0.0ms client=127.0.0.1
+2026-02-20 15:42:28,392 - INFO - GET /openapi.json 200 0.62ms client=127.0.0.1
+2026-02-20 15:42:53,592 - INFO - POST /api/v1/auth/token 200 2.52ms client=127.0.0.1
+2026-02-20 15:43:08,596 - INFO - GET /api/v1/analysis/encounters 401 3.0ms client=127.0.0.1
+2026-02-20 15:44:29,275 - INFO - GET /api/v1/analysis/encounters 401 28.5ms client=127.0.0.1
+2026-02-20 15:44:51,293 - INFO - Encounter analysis fetched by user=Prabhu records=6
+2026-02-20 15:44:51,296 - INFO - GET /api/v1/analysis/encounters 200 93.48ms client=127.0.0.1
+2026-02-23 08:34:24,850 - INFO - GET /docs 200 1.02ms client=127.0.0.1
+2026-02-23 08:34:25,536 - INFO - GET /openapi.json 200 24.15ms client=127.0.0.1
+2026-02-23 08:37:27,676 - INFO - File upload completed successfully
+2026-02-23 08:37:27,684 - INFO - POST /api/v1/upload 201 115133.18ms client=127.0.0.1
+2026-02-23 09:05:43,739 - INFO - GET /api/v1/analytics/admissions-trend 200 24.03ms client=127.0.0.1
+2026-02-23 09:08:51,972 - INFO - GET /api/v1/analytics/average-stay 200 24.78ms client=127.0.0.1
+2026-02-23 09:09:16,494 - INFO - GET /api/v1/analytics/admissions-trend 200 14.5ms client=127.0.0.1
+2026-02-23 09:16:49,468 - INFO - GET /api/v1/analytics/admissions-trend 200 45.16ms client=127.0.0.1
+2026-02-23 09:16:52,316 - INFO - GET /api/v1/analytics/average-stay 200 9.36ms client=127.0.0.1
+2026-02-23 09:21:21,152 - INFO - GET /api/v1/analytics/admissions-trend 200 38.71ms client=127.0.0.1
+2026-02-23 09:21:24,893 - INFO - GET /api/v1/analytics/average-stay 200 10.9ms client=127.0.0.1
+2026-02-23 09:24:16,344 - INFO - GET /api/v1/analytics/high-revenue/encounters 200 10.61ms client=127.0.0.1
+2026-02-23 15:49:53,421 - INFO - GET / 404 1.14ms client=127.0.0.1
+2026-02-23 15:49:57,335 - INFO - GET /docs 200 0.0ms client=127.0.0.1
+2026-02-23 15:49:57,476 - INFO - GET /openapi.json 200 24.5ms client=127.0.0.1
+2026-02-23 15:51:07,529 - INFO - File upload completed successfully
+2026-02-23 15:51:07,538 - INFO - POST /api/v1/upload 201 57768.36ms client=127.0.0.1
+2026-02-23 15:53:56,531 - INFO - GET /docs 200 1.52ms client=127.0.0.1
+2026-02-23 15:53:56,644 - INFO - GET /openapi.json 200 21.9ms client=127.0.0.1
+2026-02-23 15:54:05,257 - INFO - GET /api/v1/analytics/average-cost 200 35.01ms client=127.0.0.1
+2026-02-23 16:04:39,786 - INFO - GET /docs 200 1.51ms client=127.0.0.1
+2026-02-23 16:04:39,919 - INFO - GET /openapi.json 200 23.17ms client=127.0.0.1
+2026-02-23 16:10:12,434 - INFO - GET /api/v1/analytics/high-revenue/procedures 200 30.2ms client=127.0.0.1
+2026-02-23 16:10:20,943 - INFO - GET /api/v1/analytics/payer-comparison 200 35.54ms client=127.0.0.1
+2026-02-23 16:10:35,450 - INFO - GET /api/v1/analytics/high-revenue/encounters 200 12.49ms client=127.0.0.1
+2026-02-23 16:23:14,159 - INFO - GET /docs 200 0.0ms client=127.0.0.1
+2026-02-23 16:23:14,413 - INFO - GET /openapi.json 200 80.49ms client=127.0.0.1
+2026-02-23 16:26:04,152 - INFO - Doctor logged in: Vicky
+2026-02-23 16:26:04,152 - INFO - POST /api/v1/auth/token 200 4.52ms client=127.0.0.1
+2026-02-23 16:26:30,408 - INFO - GET /api/v1/patients/list 200 46.98ms client=127.0.0.1
+2026-02-23 16:26:45,517 - INFO - GET /api/v1/analytics/average-cost 403 1.06ms client=127.0.0.1
+2026-02-23 16:26:56,574 - INFO - GET /api/v1/analytics/procedure-coverage 403 3.04ms client=127.0.0.1
+2026-02-23 16:28:15,456 - INFO - GET /api/v1/analytics/average-cost 403 1.51ms client=127.0.0.1
+2026-02-23 16:28:35,389 - INFO - GET /api/v1/patients/list/5605b66b-e92d-c16c-1b83-b8bf7040d51f 200 11.06ms client=127.0.0.1
+2026-02-23 16:33:03,232 - INFO - GET / 404 0.53ms client=127.0.0.1
+2026-02-23 16:33:10,479 - INFO - GET /docs 200 1.02ms client=127.0.0.1
+2026-02-23 16:33:10,702 - INFO - GET /openapi.json 200 22.39ms client=127.0.0.1
+2026-02-23 16:33:29,207 - INFO - Admin logged in: Prabhu
+2026-02-23 16:33:29,208 - INFO - POST /api/v1/auth/token 200 4.77ms client=127.0.0.1
+2026-02-23 16:34:15,167 - ERROR - File upload failed: 'marital'
+2026-02-23 16:34:15,168 - ERROR - PatientManagementError [VALIDATION_ERROR]: Validation failed for field 'file': 'marital'
+2026-02-23 16:34:15,168 - INFO - POST /api/v1/upload 400 298.43ms client=127.0.0.1
+2026-02-23 16:35:47,642 - ERROR - File upload failed: 'marital'
+2026-02-23 16:35:47,643 - ERROR - PatientManagementError [VALIDATION_ERROR]: Validation failed for field 'file': 'marital'
+2026-02-23 16:35:47,643 - INFO - POST /api/v1/upload 400 145.76ms client=127.0.0.1
+2026-02-23 16:37:48,034 - ERROR - File upload failed: closing parenthesis ')' does not match opening parenthesis '{' (data_processor.py, line 41)
+2026-02-23 16:37:48,035 - ERROR - PatientManagementError [VALIDATION_ERROR]: Validation failed for field 'file': closing parenthesis ')' does not match opening parenthesis '{' (data_processor.py, line 41)
+2026-02-23 16:37:48,035 - INFO - POST /api/v1/upload 400 146.71ms client=127.0.0.1
+2026-02-23 16:41:06,672 - INFO - File upload completed successfully
+2026-02-23 16:41:06,680 - INFO - POST /api/v1/upload 201 174294.87ms client=127.0.0.1
+2026-02-23 16:41:54,333 - INFO - GET /api/v1/analytics/average-cost 200 15.56ms client=127.0.0.1

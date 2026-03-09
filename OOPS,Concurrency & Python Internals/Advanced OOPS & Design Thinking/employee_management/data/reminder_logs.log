@@ -1,0 +1,3 @@
+2026-02-06 10:20:34 - INFO - NOTIFICATION_CREATED | Project: PROJ_REMIND_01 | Team: 1 | Employee: SYSTEM | Message: Reminder created - Project deadline in 59 minute(s) (1.0 hours)
+2026-02-06 10:20:34 - INFO - NOTIFICATION_SHOWN | Project: PROJ_REMIND_01 | Team: 1 | Employee: SYSTEM | Message: Reminder shown again (count: 2)
+2026-02-06 10:20:34 - INFO - ACKNOWLEDGMENT_RECEIVED | Project: PROJ_REMIND_01 | Team: 1 | Employee: 1 | Message: Notification acknowledged after 2 reminder(s)

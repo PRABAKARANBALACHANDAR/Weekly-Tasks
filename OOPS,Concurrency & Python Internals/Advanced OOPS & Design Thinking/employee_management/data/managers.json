@@ -1,0 +1,26 @@
+{
+    "admin01": {
+        "id": "admin01",
+        "name": "System Administrator",
+        "username": "admin",
+        "password": "admin123",
+        "role": "ADMIN",
+        "salary": 150000
+    },
+    "1": {
+        "id": "1",
+        "name": "john",
+        "username": "john",
+        "password": "123",
+        "role": "CEO",
+        "salary": 150000
+    },
+    "M001": {
+        "id": "M001",
+        "name": "bob",
+        "username": "bob",
+        "password": "456",
+        "role": "COO",
+        "salary": 120000
+    }
+}
